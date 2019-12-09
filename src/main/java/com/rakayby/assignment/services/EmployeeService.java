@@ -53,6 +53,14 @@ public class EmployeeService {
         }
     }
 
+    public Integer updateEmployeeName(String firstName, String lastName, Long Id) {
+        return employeeRepository.updateEmployeeName(firstName, lastName, Id);
+    }
+
+    public List<Employee> findByLastName(String lastName) {
+        return employeeRepository.findByLastname(lastName);
+    }
+
     private void updateExistingEmployee(Employee target, Employee source) {
         target.setFirstName(source.getFirstName());
         target.setLastName(source.getLastName());

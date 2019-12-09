@@ -1,7 +1,12 @@
 package com.rakayby.assignment.repositories;
 
 import com.rakayby.assignment.models.Employee;
+import java.util.List;
+import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 /**
@@ -10,7 +15,14 @@ import org.springframework.stereotype.Repository;
  */
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
+
     //nothing needed more than CRUD therefore, will use spring implementation only.
-    //so this interface will not include any new methods in my case.
-    //however, more business logic could be added here if needed.
+    @Query("select e from EMPLOYEES e where e.lastName = last_name")
+    List<Employee> findByLastname(@Param("last_name")String lastname);
+
+    @Modifying
+    @Transactional
+    @Query("update EMPLOYEES set firstName=first_name, lastName=first_name where id=ID")
+    Integer updateEmployeeName(@Param("first_name")String firstName,@Param("first_name") String lastName,@Param("ID") Long Id);
+    //returns number of affected rows
 }
