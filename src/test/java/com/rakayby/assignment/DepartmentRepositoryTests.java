@@ -6,9 +6,13 @@
 package com.rakayby.assignment;
 
 import com.rakayby.assignment.models.Department;
+import com.rakayby.assignment.models.Employee;
 import com.rakayby.assignment.services.DepartmentService;
+import com.rakayby.assignment.services.EmployeeService;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertNull;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +26,9 @@ public class DepartmentRepositoryTests {
 
     @Autowired
     private DepartmentService departmentService;
+
+    @Autowired
+    private EmployeeService employeeService;
 
     @Test
     void testFindAll() {
@@ -50,5 +57,12 @@ public class DepartmentRepositoryTests {
         e.setDepartmentName("created");
         e.setManagerId(1L);
         assertTrue(departmentService.create(e).getId() != null);
+    }
+
+    @Disabled   //other tests checking for department with id=1 will fail if enabled
+    @Test
+    void checkCustomerAfterDepartmentDelete() {
+        departmentService.deleteById(1L);
+        assertFalse(employeeService.findById(1L).isPresent());
     }
 }

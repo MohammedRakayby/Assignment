@@ -8,6 +8,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -30,11 +31,14 @@ public class Employee {
     private Long id;
 
     @Column(name = "FIRST_NAME")
+    @NotNull
     private String firstName;
 
     @Column(name = "LAST_NAME")
+    @NotNull
     private String lastName;
 
+    //default column name is ok
     private String email;
 
     @Column(name = "PHONE_NUMBER")
@@ -48,8 +52,7 @@ public class Employee {
     @Column(name = "MANAGER_ID")
     private Long managerId;
 
-    @ManyToOne
-    @JoinColumn(name = "DEPARTMENT_ID")
-    private Department department;
+    @Column(name = "DEPARTMENT_ID")
+    private Long departmentId;
 
 }

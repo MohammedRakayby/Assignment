@@ -35,8 +35,8 @@ public class EmployeeRepositoryTests {
 
     @Test
     void deleteById() {
-        employeeService.deleteById(1l);
-        assertFalse(employeeService.findById(1l).isPresent());
+        employeeService.deleteById(9l);
+        assertFalse(employeeService.findById(9l).isPresent());
     }
 
     @Test
@@ -65,6 +65,7 @@ public class EmployeeRepositoryTests {
 
     @Test
     void findByLastName() {
+        System.out.println(employeeService.findByLastName("Rakayby").get(0).toString());
         assertTrue(employeeService.findByLastName("Rakayby").size() > 0);
     }
 
@@ -73,9 +74,9 @@ public class EmployeeRepositoryTests {
 //        assertNotNull(employeeService.updateEmployeeName("Updated", "Name", 4L));
         assertTrue(employeeService.updateEmployeeName("Updated", "Name", 2L) > 0);
     }
-    
+
     @Test
-    void getEmployeeDepartment(){
-        assertNotNull(employeeService.findById(1L).get().getDepartment());
+    void getEmployeeDepartment() {
+        assertNotNull(employeeService.findById(1L).get().getDepartmentId());
     }
 }

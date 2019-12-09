@@ -35,6 +35,6 @@ public class Department {
     @Column(name = "MANAGER_ID")
     private Long managerId;
 
-    @OneToMany(mappedBy = "department",cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "departmentId",cascade = CascadeType.ALL)
     private Set<Employee> employees;
 }
