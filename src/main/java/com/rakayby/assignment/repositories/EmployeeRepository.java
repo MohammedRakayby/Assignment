@@ -18,11 +18,13 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     //nothing needed more than CRUD therefore, will use spring implementation only.
     @Query("select e from EMPLOYEES e where e.lastName = last_name")
-    List<Employee> findByLastname(@Param("last_name")String lastname);
+    //using @param with custom variable name
+    List<Employee> findByLastname(@Param("last_name") String lastname);
 
     @Modifying
     @Transactional
-    @Query("update EMPLOYEES set firstName=first_name, lastName=first_name where id=ID")
-    Integer updateEmployeeName(@Param("first_name")String firstName,@Param("first_name") String lastName,@Param("ID") Long Id);
+    @Query("update EMPLOYEES set firstName=?1, lastName=?2 where id=?3")
+    //using ordinal parameters
+    Integer updateEmployeeName(String firstName, String lastName, Long Id);
     //returns number of affected rows
 }

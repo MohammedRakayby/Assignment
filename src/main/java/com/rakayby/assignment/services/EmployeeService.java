@@ -64,7 +64,7 @@ public class EmployeeService {
     private void updateExistingEmployee(Employee target, Employee source) {
         target.setFirstName(source.getFirstName());
         target.setLastName(source.getLastName());
-        target.setDepartmentId(source.getDepartmentId());
+        target.setDepartment(source.getDepartment());
         target.setHiringDate(source.getHiringDate());
         target.setEmail(source.getEmail());
         target.setManagerId(source.getManagerId());

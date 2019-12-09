@@ -3,7 +3,6 @@ package com.rakayby.assignment;
 import com.rakayby.assignment.models.Employee;
 import com.rakayby.assignment.services.EmployeeService;
 import java.util.Optional;
-import org.junit.jupiter.api.Assertions;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -18,7 +17,7 @@ import org.springframework.boot.test.context.SpringBootTest;
  * @author Mohammed.Rakayby
  */
 @SpringBootTest
-public class RepositoryTest {
+public class EmployeeRepositoryTests {
 
     @Autowired
     private EmployeeService employeeService;
@@ -72,6 +71,11 @@ public class RepositoryTest {
     @Test
     void updateEmployeeName() {
 //        assertNotNull(employeeService.updateEmployeeName("Updated", "Name", 4L));
-        assertTrue(employeeService.updateEmployeeName("Updated", "Name", 4L) > 0);
+        assertTrue(employeeService.updateEmployeeName("Updated", "Name", 2L) > 0);
+    }
+    
+    @Test
+    void getEmployeeDepartment(){
+        assertNotNull(employeeService.findById(1L).get().getDepartment());
     }
 }

@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -16,16 +18,20 @@ import lombok.ToString;
  * @author Mohammed.Rakayby
  */
 @Entity(name = "EMPLOYEES")
-@Getter @Setter @NoArgsConstructor @ToString
+@Getter
+@Setter
+@NoArgsConstructor
+@ToString
 public class Employee {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "EMPLOYEE_ID")
     private Long id;
 
     @Column(name = "FIRST_NAME")
     private String firstName;
-    
+
     @Column(name = "LAST_NAME")
     private String lastName;
 
@@ -36,13 +42,14 @@ public class Employee {
 
     @Column(name = "HIRING_DATE")
     private Date hiringDate;
-    
+
     private Integer salary;
-    
+
     @Column(name = "MANAGER_ID")
     private Long managerId;
-    
-    @Column(name = "DEPARTMENT_ID")
-    private Long departmentId;
+
+    @ManyToOne
+    @JoinColumn(name = "DEPARTMENT_ID")
+    private Department department;
 
 }
