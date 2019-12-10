@@ -4,6 +4,7 @@ import com.rakayby.assignment.models.Department;
 import com.rakayby.assignment.repositories.DepartmentRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -41,6 +42,7 @@ public class DepartmentService {
         return departmentRepository.save(e);
     }
 
+    @Transactional
     public Integer update(String departmentName, Long managerId, Long departmentId) {
         return departmentRepository.updateDepartment(departmentName, managerId, departmentId);
     }

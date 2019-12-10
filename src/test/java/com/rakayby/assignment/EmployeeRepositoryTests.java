@@ -1,7 +1,7 @@
 package com.rakayby.assignment;
 
+import com.rakayby.assignment.facades.EmployeeFacade;
 import com.rakayby.assignment.models.Employee;
-import com.rakayby.assignment.services.EmployeeService;
 import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -20,23 +20,23 @@ import org.springframework.boot.test.context.SpringBootTest;
 public class EmployeeRepositoryTests {
 
     @Autowired
-    private EmployeeService employeeService;
+    private EmployeeFacade emplyeeFacade;
 
     @Disabled("Ignored because of hardcoded size")
     @Test
     void testFindAll() {
-        assertEquals(4, employeeService.findAll().size());
+        assertEquals(4, emplyeeFacade.findAll().size());
     }
 
     @Test
     void findById() {
-        assertTrue(employeeService.findById(1L).isPresent());
+        assertTrue(emplyeeFacade.findById(1L).isPresent());
     }
 
     @Test
     void deleteById() {
-        employeeService.deleteById(9l);
-        assertFalse(employeeService.findById(9l).isPresent());
+        emplyeeFacade.deleteById(9l);
+        assertFalse(emplyeeFacade.findById(9l).isPresent());
     }
 
     @Test
@@ -45,8 +45,8 @@ public class EmployeeRepositoryTests {
         updatedEmployee.setFirstName("test");
         updatedEmployee.setLastName("update");
 //        System.out.println(updatedEmployee.toString());
-        Employee oldEmployee = employeeService.findById(2L).get();
-        Optional result = employeeService.Update(updatedEmployee, 2L);
+        Employee oldEmployee = emplyeeFacade.findById(2L).get();
+        Optional result = emplyeeFacade.Update(updatedEmployee, 2L);
         Employee fetchedEmployee = (Employee) result.get();
 
         assertFalse(fetchedEmployee.getFirstName().equalsIgnoreCase(oldEmployee.getFirstName()));
@@ -60,23 +60,23 @@ public class EmployeeRepositoryTests {
         e.setFirstName("created");
         e.setLastName("employee");
         e.setPhoneNumber("987654321");
-        assertTrue(employeeService.create(e).getId() != null);
+        assertTrue(emplyeeFacade.create(e).getId() != null);
     }
 
     @Test
     void findByLastName() {
-        System.out.println(employeeService.findByLastName("Rakayby").get(0).toString());
-        assertTrue(employeeService.findByLastName("Rakayby").size() > 0);
+        System.out.println(emplyeeFacade.findByLastName("Rakayby").get(0).toString());
+        assertTrue(emplyeeFacade.findByLastName("Rakayby").size() > 0);
     }
 
     @Test
     void updateEmployeeName() {
 //        assertNotNull(employeeService.updateEmployeeName("Updated", "Name", 4L));
-        assertTrue(employeeService.updateEmployeeName("Updated", "Name", 2L) > 0);
+        assertTrue(emplyeeFacade.updateEmployeeName("Updated", "Name", 2L) > 0);
     }
 
     @Test
     void getEmployeeDepartment() {
-        assertNotNull(employeeService.findById(1L).get().getDepartmentId());
+        assertNotNull(emplyeeFacade.findById(1L).get().getDepartmentId());
     }
 }

@@ -2,7 +2,6 @@ package com.rakayby.assignment.repositories;
 
 import com.rakayby.assignment.models.Employee;
 import java.util.List;
-import javax.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,7 +21,6 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
     List<Employee> findByLastname(@Param("last_name") String lastname);
 
     @Modifying
-    @Transactional
     @Query("update EMPLOYEES set firstName=?1, lastName=?2 where id=?3")
     //using ordinal parameters
     Integer updateEmployeeName(String firstName, String lastName, Long Id);

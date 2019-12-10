@@ -4,6 +4,7 @@ import com.rakayby.assignment.models.Employee;
 import com.rakayby.assignment.repositories.EmployeeRepository;
 import java.util.List;
 import java.util.Optional;
+import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,6 +54,7 @@ public class EmployeeService {
         }
     }
 
+    @Transactional
     public Integer updateEmployeeName(String firstName, String lastName, Long Id) {
         return employeeRepository.updateEmployeeName(firstName, lastName, Id);
     }
