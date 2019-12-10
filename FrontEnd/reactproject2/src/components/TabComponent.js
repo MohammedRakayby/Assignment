@@ -7,7 +7,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import EmployeeTab from "./EmployeeTab"
+import EmployeeV3 from "./EmployeeTabV3";
 
 function TabPanel(props) {
     const { children, value, index, ...other } = props;
@@ -71,7 +71,6 @@ export default function FullWidthTabs() {
                 >
                     <Tab label="Employee" {...a11yProps(0)} />
                     <Tab label="Department" {...a11yProps(1)} />
-                    <Tab label="Search" {...a11yProps(2)} />
                 </Tabs>
             </AppBar>
             <SwipeableViews
@@ -80,13 +79,10 @@ export default function FullWidthTabs() {
                 onChangeIndex={handleChangeIndex}
             >
                 <TabPanel value={value} index={0} dir={theme.direction}>
-                    <EmployeeTab/>
+                    <EmployeeV3/>
         </TabPanel>
                 <TabPanel value={value} index={1} dir={theme.direction}>
                     Departments
-        </TabPanel>
-                <TabPanel value={value} index={2} dir={theme.direction}>
-                    Search
         </TabPanel>
             </SwipeableViews>
         </div>
