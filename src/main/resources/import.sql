@@ -9,7 +9,7 @@ insert into departments (DEPARTMENT_NAME ,MANAGER_ID ) values ('Products',1);
 insert into departments (DEPARTMENT_NAME ,MANAGER_ID ) values ('Testing',3);
 insert into departments(DEPARTMENT_NAME ,MANAGER_ID ) values ('UI/UX',5);
 
-insert into employees (FIRST_NAME,LAST_NAME,EMAIL,PHONE_NUMBER,HIRING_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID) values ('Mohammed','Rakayby','mohammedrakayby@gmail.com','123456789',PARSEDATETIME('17/09/2012', 'dd/MM/yyyy'),123,null,1);
+insert into EMPLOYEES(FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRING_DATE, SALARY, MANAGER_ID, DEPARTMENT_ID) values ('Mohammed','Rakayby','mohammedrakayby@gmail.com','123456789',PARSEDATETIME('17/09/2012', 'dd/MM/yyyy'),123,null,1);
 insert into EMPLOYEES(FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRING_DATE, SALARY, MANAGER_ID, DEPARTMENT_ID) values ('Genevra', 'Snalom', 'gsnalom0@hugedomains.com', '323 159 1438', PARSEDATETIME('17/09/2000','dd/mm/yyyy'), 39550, 2, 3);
 insert into EMPLOYEES(FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRING_DATE, SALARY, MANAGER_ID, DEPARTMENT_ID) values ('Garvy', 'Blount', 'gblount1@ask.com', '924 273 6882', PARSEDATETIME('17/09/2000','dd/mm/yyyy'), 10615, 2, 3);
 insert into EMPLOYEES(FIRST_NAME, LAST_NAME, EMAIL, PHONE_NUMBER, HIRING_DATE, SALARY, MANAGER_ID, DEPARTMENT_ID) values ('Ransom', 'Craigs', 'rcraigs2@eventbrite.com', '637 347 3936', PARSEDATETIME('17/09/2000','dd/mm/yyyy'), 23768, 1, 4);
