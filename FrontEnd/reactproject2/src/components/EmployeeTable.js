@@ -11,7 +11,7 @@ class EmployeeTable extends React.Component {
                 { title: 'First Name', field: 'firstName' },
                 { title: 'Last Name', field: 'lastName' },
                 { title: 'Email', field: 'email' },
-                { title: 'Phone Number', field: 'phoneNumber', type: 'numeric' },
+                { title: 'Phone Number', field: 'phoneNumber' },
                 { title: 'Hiring Date', field: 'hiringDate', type: 'date' },
                 { title: 'Salary', field: 'salary', type: 'numeric' },
                 { title: 'Department Id', field: 'managerId', type: 'numeric' },
@@ -58,7 +58,7 @@ class EmployeeTable extends React.Component {
     }
 
     validate(employee) {
-        var numPattern = /^[0-9\-]+$/;
+        var numPattern = /^[0-9-]+$/;
         if (!employee.firstName || employee.firstName === "" || employee.firstName.length < 2) {
             alert('First Name cannot be null or empty and must be longer than 2 characters');
             return false;
