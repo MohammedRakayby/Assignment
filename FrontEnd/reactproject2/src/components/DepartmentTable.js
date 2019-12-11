@@ -9,7 +9,7 @@ class DepartmentTable extends React.Component {
         super(props);
         this.state = {
             columns: [
-                { title: 'Department Id', field: 'id' },
+                { title: 'Department Id', field: 'id', editable: 'never' },
                 { title: 'Department Name', field: 'departmentName' },
                 { title: 'Manager Id', field: 'managerId', type: 'numeric' },
             ],
@@ -66,38 +66,40 @@ class DepartmentTable extends React.Component {
                                 resolve();
                                 this.setState(prevState => {
                                     const data = [...prevState.data];
-                                    data.push(newData);
                                     this.saveDepartment(newData);
+                                    newData.id = this.state.data.reduce((max, sum) => sum.id > max ? sum.id : max, this.state.data[0].id) + 1;
+                                    data.push(newData);
                                     return { ...prevState, data };
                                 });
                             }, 200);
                         }),
                     onRowUpdate: (newData, oldData) =>
-                        new Promise(resolve => {
+                        new Promise((resolve, reject) => {
                             setTimeout(() => {
-                                resolve();
-                                if (oldData) {
-                                    this.setState(prevState => {
-                                        const data = [...prevState.data];
-                                        data[data.indexOf(oldData)] = newData;
-                                        this.editDepartment(newData);
-                                    });
+                                {
+                                    const data = this.state.data;
+                                    const index = data.indexOf(oldData);
+                                    data[index] = newData;
+                                    this.setState({ data }, () => resolve());
                                 }
-                            }, 200);
+                                resolve()
+                                this.editDepartment(newData);
+                            }, 200)
                         }),
                     onRowDelete: oldData =>
                         new Promise(resolve => {
                             setTimeout(() => {
-                                resolve();
                                 this.setState(prevState => {
                                     const data = [...prevState.data];
                                     data.splice(data.indexOf(oldData), 1);
                                     this.deleteDepartment(oldData);
                                     return { ...prevState, data };
                                 });
+                                resolve();
                             }, 200);
                         }),
-                }}
+                }
+                }
             />
         );
     }

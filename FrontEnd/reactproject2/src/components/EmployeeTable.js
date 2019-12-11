@@ -102,19 +102,16 @@ class EmployeeTable extends React.Component {
                         new Promise(resolve => {
                             setTimeout(() => {
                                 resolve();
-                                if (oldData) {
-                                    this.setState(prevState => {
-                                        if (this.validate(newData)) {
-                                            const data = [...prevState.data];
-                                            data[data.indexOf(oldData)] = newData;
-                                            this.editEmployee(newData);
-                                            return { ...prevState, data };
-                                        } else {
-                                            return { ...prevState, ...prevState.data };
-                                        }
-
-                                    });
-                                }
+                                this.setState(prevState => {
+                                    if (this.validate(newData)) {
+                                        const data = [...prevState.data];
+                                        data[data.indexOf(oldData)] = newData;
+                                        this.editEmployee(newData);
+                                        return { ...prevState, data };
+                                    } else {
+                                        return { ...prevState, ...prevState.data };
+                                    }
+                                });
                             }, 200);
                         }),
                     onRowDelete: oldData =>
