@@ -1,5 +1,6 @@
 package com.rakayby.assignment.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -36,5 +37,6 @@ public class Department {
     private Long managerId;
 
     @OneToMany(mappedBy = "departmentId",cascade = CascadeType.ALL)
+    @JsonIgnore
     private Set<Employee> employees;
 }

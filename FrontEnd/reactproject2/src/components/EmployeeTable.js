@@ -14,8 +14,8 @@ class EmployeeTable extends React.Component {
                 { title: 'Phone Number', field: 'phoneNumber' },
                 { title: 'Hiring Date', field: 'hiringDate', type: 'date' },
                 { title: 'Salary', field: 'salary', type: 'numeric' },
-                { title: 'Department Id', field: 'managerId', type: 'numeric' },
-                { title: 'Manager Id', field: 'departmentId', type: 'numeric' },
+                { title: 'Department Id', field: 'departmentId', type: 'numeric' },
+                { title: 'Manager Id', field: 'managerId', type: 'numeric' },
             ],
             data: []
         }
