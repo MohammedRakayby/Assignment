@@ -6,7 +6,10 @@ import com.rakayby.assignment.models.Department;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
@@ -27,5 +30,25 @@ public class DepartmentController {
     @GetMapping(ApiEndPoints.GET_ALL)
     public List<Department> getAll() {
         return departmentFacade.findAll();
+    }
+
+//    @PostMapping(ApiEndPoints.UPDATE)
+//    public Employee update(@RequestBody Department d, @RequestParam(name = "departmentId", required = true) Long depratmentId) {
+//        //add validations, create class utils
+//        Optional updatedEmployee = departmentFacade.update(d, depratmentId);
+//        if (updatedEmployee.isPresent()) {
+//            return (Employee) updatedEmployee.get();
+//        }
+//        return null;
+//    }
+    @GetMapping(ApiEndPoints.DELETE)
+    public void delete(@RequestParam(name = "departmentId", required = true) Long departmentId) {
+        departmentFacade.deleteById(departmentId);
+    }
+
+    @PostMapping(ApiEndPoints.CREATE)
+    public Department create(@RequestBody Department d) {
+        //validate input
+        return departmentFacade.create(d);
     }
 }
