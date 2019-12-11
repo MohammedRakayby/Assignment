@@ -56,10 +56,29 @@ class EmployeeTable extends React.Component {
             body: JSON.stringify(editedEmployee)
         })
     }
+
+    validate(employee) {
+        var numPattern = /^[0-9\-]+$/;
+        if (!employee.firstName || employee.firstName === "" || employee.firstName.length < 2) {
+            alert('First Name cannot be null or empty and must be longer than 2 characters');
+            return false;
+        } else if (!employee.lastName || employee.lastName === "" || employee.firstName.length < 2) {
+            alert('Last Name cannot be null or empty and must be longer than 2 characters');
+            return false;
+        } else if (employee.salary <= 0) {
+            alert('Salary cannot be empty or zero');
+            return false;
+        } else if (!numPattern.test(employee.phoneNumber)) {
+            alert('Phone Number must contain only numbers and dashs');
+            return false;
+        } else {
+            return true;
+        }
+    }
     render() {
         return (
             <MaterialTable
-                title="Editable Example"
+                title="Employees"
                 columns={this.state.columns}
                 data={this.state.data}
                 editable={{
@@ -68,10 +87,14 @@ class EmployeeTable extends React.Component {
                             setTimeout(() => {
                                 resolve();
                                 this.setState(prevState => {
-                                    const data = [...prevState.data];
-                                    data.push(newData);
-                                    this.saveEmployee(newData);
-                                    return { ...prevState, data };
+                                    if (this.validate(newData)) {
+                                        const data = [...prevState.data];
+                                        data.push(newData);
+                                        this.saveEmployee(newData);
+                                        return { ...prevState, data };
+                                    } else {
+                                        return { ...prevState, ...prevState.data }
+                                    }
                                 });
                             }, 200);
                         }),
@@ -81,10 +104,15 @@ class EmployeeTable extends React.Component {
                                 resolve();
                                 if (oldData) {
                                     this.setState(prevState => {
-                                        const data = [...prevState.data];
-                                        data[data.indexOf(oldData)] = newData;
-                                        this.editEmployee(newData);
-                                        return { ...prevState, data };
+                                        if (this.validate(newData)) {
+                                            const data = [...prevState.data];
+                                            data[data.indexOf(oldData)] = newData;
+                                            this.editEmployee(newData);
+                                            return { ...prevState, data };
+                                        } else {
+                                            return { ...prevState, ...prevState.data };
+                                        }
+
                                     });
                                 }
                             }, 200);
