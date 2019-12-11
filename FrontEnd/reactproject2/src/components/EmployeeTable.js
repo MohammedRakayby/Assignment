@@ -12,7 +12,7 @@ class EmployeeTable extends React.Component {
                 { title: 'Last Name', field: 'lastName' },
                 { title: 'Email', field: 'email' },
                 { title: 'Phone Number', field: 'phoneNumber' },
-                { title: 'Hiring Date', field: 'hiringDate', type: 'date' },
+                { title: 'Hiring Date', field: 'hiringDate' },
                 { title: 'Salary', field: 'salary', type: 'numeric' },
                 { title: 'Department Id', field: 'departmentId', type: 'numeric' },
                 { title: 'Manager Id', field: 'managerId', type: 'numeric' },
