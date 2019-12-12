@@ -57,7 +57,7 @@ class EmployeeTable extends React.Component {
         })
     }
 
-    validate(employee) {
+    validateEmployee(employee) {
         var numPattern = /^[0-9-]+$/;
         if (!employee.firstName || employee.firstName === "" || employee.firstName.length < 2) {
             alert('First Name cannot be null or empty and must be longer than 2 characters');
@@ -71,10 +71,27 @@ class EmployeeTable extends React.Component {
         } else if (!numPattern.test(employee.phoneNumber)) {
             alert('Phone Number must contain only numbers and dashs');
             return false;
-        } else {
+        } else if (!this.isValidDate(employee.hiringDate)) {
+            alert('Hiring date is invalid, date format should DD/MM/YYYY')
+            return false;
+        }
+        else {
             return true;
         }
     }
+    isValidDate(dateString) {
+        debugger;
+        if (!/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(dateString))
+            return false;
+
+        var parts = dateString.split("/");
+        var day = parseInt(parts[0], 10);
+        var month = parseInt(parts[1], 10);
+        var year = parseInt(parts[2], 10);
+
+        if (year < 1950 || year > 2019 || month == 0 || month > 12 || day < 1 || day > 31)
+            return false;
+    };
     render() {
         return (
             <MaterialTable
@@ -87,7 +104,7 @@ class EmployeeTable extends React.Component {
                             setTimeout(() => {
                                 resolve();
                                 this.setState(prevState => {
-                                    if (this.validate(newData)) {
+                                    if (this.validateEmployee(newData)) {
                                         const data = [...prevState.data];
                                         data.push(newData);
                                         this.saveEmployee(newData);
@@ -103,7 +120,7 @@ class EmployeeTable extends React.Component {
                             setTimeout(() => {
                                 resolve();
                                 this.setState(prevState => {
-                                    if (this.validate(newData)) {
+                                    if (this.validateEmployee(newData)) {
                                         const data = [...prevState.data];
                                         data[data.indexOf(oldData)] = newData;
                                         this.editEmployee(newData);
