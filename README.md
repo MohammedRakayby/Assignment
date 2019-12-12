@@ -2,22 +2,21 @@
 
 This is a simple app, demonstrating simple CRUD operations on two entities 'Employee' and 'Department'.
 
-This is dont using Spring boot (refer to POM for complete dependencies used) and ReactJS with Material-UI.
+This is done using Spring boot (refer to POM for complete dependencies used) and ReactJS with Material-UI.
 
 ## Installation
 
 ### FrontEnd
-Use the node package manager in the 'frontend/reactproject2' to run the following:
+Use the node package manager in the 'FrontEnd/reactproject2' directory to run the following:
 
 ```bash
 npm install
 
-npm start
 ```
 
-The first will take care of all required dependencies, the second will start the app on port 3000 (default)
+This will take care of all required dependencies.
 
-P.S make sure you installed node first to be able to use npm
+Make sure you installed node first to be able to use npm.
 
 ### Backend
 
@@ -29,12 +28,20 @@ mvn install
 ## Usage
 
 ### Backend
-You can run the code with your favorite IDE easily, or you can run the fat jar from the previous step directly by
+You can run the code with your favorite IDE easily, or you can run the fat jar generated from the previous step directly in cmd by
 ```bash
 java -jar /path-to-jar 
 ```
 The jar contains all the code and dependencies including embedded tomcat, running by default on port 8080
 ### FrontEnd
+
+in 'FrontEnd/reactproject2' run the following:
+
+```bash
+npm start
+
+```
+this will start the app on port 3000 (default).
 
 Now you can start using the browser by visitng
 ```bash
